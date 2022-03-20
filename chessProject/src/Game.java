@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class Game {
 
-
   private Position[][] board;
   private Player[] players = new Player[2];
   private Player currentTurnPlayer;
@@ -142,7 +141,7 @@ public class Game {
   }
 
   public void currentBoardGame() {
-    System.out.print("\n\t\t [X0]  [X1]  [X2]  [X3]  [X4]  [X5]  [X6]  [X7]");
+    System.out.print("\n\t [X0]  [X1]   [X2]    [X3]    [X4]    [X5]     [X6]    [X7]");
     for (int i = 0; i < board.length; i++) {
       System.out.println();
       //System.out.print(i + "  ");
@@ -151,7 +150,7 @@ public class Game {
         if (board[i][j].getPiece() != null) {
           System.out.print(board[i][j].getPiece().toString() + "\t\t");
         } else {
-          System.out.print(board[i][j].toString() + " \t\t");
+          System.out.print(board[i][j].toString());
         }
       }
     }
@@ -162,7 +161,7 @@ public class Game {
   public void showBoardGame() {
     Game game = new Game();
     //System.out.print("\n\t\t (X0)  (X1)  (X2)  (X3)  (X4)  (X5)  (X6)  (X7)");
-    System.out.print("\n\t\t [X0]  [X1]  [X2]  [X3]  [X4]  [X5]  [X6]  [X7]");
+    System.out.print("\n\t [X0]  [X1]   [X2]    [X3]    [X4]    [X5]     [X6]    [X7]");
     for (int i = 0; i < board.length; i++) {
       System.out.println();
       System.out.print("(Y" + i + ")  ");
@@ -170,7 +169,7 @@ public class Game {
         if (board[i][j].getPiece() != null) {
           System.out.print(board[i][j].getPiece().toString() + "\t\t");
         } else {
-          System.out.print(board[i][j].toString() + "\t\t  ");
+          System.out.print(board[i][j].toString());
         }
       }
     }
@@ -223,7 +222,26 @@ public class Game {
         System.out.println("Invalid Input. Enter number between 1 and 4");
         helpGame();
     }
-
-
   }
+
+  public static int getUserInput(String prompt) {
+    int position = 0;
+    try {
+      Scanner question = new Scanner(System.in);
+      System.out.println(prompt);
+      position = question.nextInt();
+      return position;
+    } catch (NullPointerException e) {
+      System.out.println("The spot is EMPTY. Please type 0 - 7");
+    }
+    return position;
+  }
+
+  public static boolean isEmpty(Piece piece){
+    if(piece == null) {
+      System.out.println("The spot is empty. Try again");
+    }
+    return true;
+  }
+
 }
