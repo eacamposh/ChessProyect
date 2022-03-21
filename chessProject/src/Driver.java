@@ -14,6 +14,7 @@ public class Driver {
     System.out.println("Welcome to our Chess Game");
     System.out.println("White Pieces: ♔ ♕ ♖ ♗ ♘ ♙");
     System.out.println("Black Pieces: ♚ ♛ ♜ ♝ ♞ ♟");
+
     // initialize and show the board.
     game.newBoard();
     game.currentBoardGame();
@@ -22,6 +23,7 @@ public class Driver {
     if (help.equals("help")) {
       game.helpGame();
     }
+
     // initialize and show the board.
     game.newBoard();
     //game.currentBoardGame();
@@ -46,42 +48,26 @@ public class Driver {
       int yFinal = 0;
 
       if (!game.GAME_STATUS.equalsIgnoreCase("ACTIVE")) {
-
         System.out.println("END GAME, Thanks for playing");
         break;
       }
 
       // this while it's going to work while if the player1 pick up a different piece their color
       while (validator1) {
-
         //ask the player for the movement.
-        System.out.println(
-            "♔ Player 1:  Insert the position (number in Y axis ) of the piece that you want to move ");
-        String yInitialPosition = sc.nextLine();
-        yInitial = Integer.parseInt(yInitialPosition);
-        System.out.println(
-            "♔ Player 1: Insert the position (number in X axis ) of the piece that you want to move ");
-        String xInitialPosition = sc.nextLine();
-
-        xInitial = Integer.parseInt(xInitialPosition);
+        yInitial = Game.getUserInput("♔ Player 1:  Insert the position (number in Y axis ) of the piece that you want to move ");
+        xInitial = Game.getUserInput("♔ Player 1: Insert the position (number in X axis ) of the piece that you want to move ");
 
         Position pos[][] = game.getBoard();
+
         Piece pieceSelected = pos[yInitial][xInitial].getPiece();
 
         if (pieceSelected.isWhite()) {
           validator1 = false;
         }
 
-        System.out.println(
-            "♔ Player 1: Insert the position (number in Y axis ) to where you want to move your piece ");
-
-        String yFinalPosition = sc.nextLine();
-        yFinal = Integer.parseInt(yFinalPosition);
-        System.out.println(
-            "♔ Player 1: Insert the position (number in X axis ) to where you want to move your piece ");
-
-        String xFinalPosition = sc.nextLine();
-        xFinal = Integer.parseInt(xFinalPosition);
+        yFinal = Game.getUserInput("♔ Player 1: Insert the position (number in Y axis ) to where you want to move your piece ");
+        xFinal = Game.getUserInput("♔ Player 1: Insert the position (number in X axis ) to where you want to move your piece ");
 
         Piece endPiece = pos[yFinal][xFinal].getPiece();
         // if the player pick up a proper piece, then make the move.
@@ -97,16 +83,12 @@ public class Driver {
                 + " in that way, please try again");
           }
         } else {
-
           game.currentBoardGame();
           System.out.println("You can't move the other player pieces, try again");
         }
-
-
       }
 
       if (!game.GAME_STATUS.equalsIgnoreCase("ACTIVE")) {
-
         System.out.println("END GAME, Thanks for playing");
         break;
       }
@@ -121,15 +103,8 @@ public class Driver {
       int yFinal2 = 0;
 
       while (validator2) {
-        System.out.println(
-            "♚ Player 2:  Insert the position (number in Y axis ) of the piece that you want to move ");
-        String yInitialPosition2 = sc2.nextLine();
-        yInitial2 = Integer.parseInt(yInitialPosition2);
-        System.out.println(
-            "♚ Player 2: Insert the position (number in X axis ) of the piece that you want to move ");
-
-        String xInitialPosition2 = sc2.nextLine();
-        xInitial2 = Integer.parseInt(xInitialPosition2);
+        yInitial2 = Game.getUserInput("♔ Player 2:  Insert the position (number in Y axis ) of the piece that you want to move ");
+        xInitial2 = Game.getUserInput("♔ Player 2: Insert the position (number in X axis ) of the piece that you want to move ");
 
         Position pos2[][] = game.getBoard();
         Piece pieceSelected2 = pos2[yInitial2][xInitial2].getPiece();
@@ -137,18 +112,10 @@ public class Driver {
         if (!pieceSelected2.isWhite()) {
           validator2 = false;
         }
+        Game.isEmpty(pieceSelected2);
 
-        System.out.println(
-            "Player 2: Insert the position (number in Y axis ) to where you want to move your piece ");
-
-        String yFinalPosition2 = sc2.nextLine();
-        yFinal2 = Integer.parseInt(yFinalPosition2);
-        System.out.println(
-            " Player 2: Insert the position (number in X axis ) to where you want to move your piece ");
-
-        String xFinalPosition2 = sc2.nextLine();
-        xFinal2 = Integer.parseInt(xFinalPosition2);
-
+        yFinal2 = Game.getUserInput("♔ Player 2:  Insert the position (number in Y axis ) of the piece that you want to move ");
+        xFinal2 = Game.getUserInput("♔ Player 2: Insert the position (number in X axis ) of the piece that you want to move ");
         Piece endPiece2 = pos2[yFinal2][xFinal2].getPiece();
 
         // if the player pick up a proper piece, then make the move.
@@ -163,17 +130,12 @@ public class Driver {
             System.out.println("You can't move the piece : " + positionStart2.getPiece()
                 + " in that way, please try again");
           }
-
-
         } else {
-
           game.currentBoardGame();
           System.out.println("You can't move the other player pieces, try again");
         }
       }
     }
-
-
   }
 
 }

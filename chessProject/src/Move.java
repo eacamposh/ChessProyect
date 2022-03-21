@@ -55,5 +55,9 @@ public class Move {
     this.pieceKilled = pieceKilled;
   }
 
+  public boolean isPieceOnTheWay(Piece piece) {
+
+    return true;
+  }
 
 }

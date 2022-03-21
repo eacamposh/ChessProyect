@@ -39,12 +39,13 @@ public abstract class Piece {
     // check if the move is in the board
     if (move.getEndPosition().getRow() >= 0 && move.getEndPosition().getCol() >= 0
         && move.getEndPosition().getRow() < 8 && move.getEndPosition().getCol() < 8) {
-
       return true;
     } else {
       return false;
     }
   }
+
+
 
   @Override
   public String toString() {
